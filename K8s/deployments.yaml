@@ -16,4 +16,4 @@ spec:
       - name: helloworld
         image: hieuchaya4/helloworld:v1
         ports:
-        - containerPort: 80 # Assuming your application listens on port 80
+        - containerPort: 80
