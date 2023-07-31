@@ -1,0 +1,11 @@
+# Use an official Python runtime as the base image with Python 3.11.3
+FROM python:3.11.3
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Run the Python script
+CMD ["python", "hello.py"]
