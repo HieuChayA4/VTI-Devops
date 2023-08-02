@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+      - name: helloworld
+        image: hieuchaya4/helloworld:v1
+        env:
+          - name: configmap_path
+            value: "/config/data-config.properties"
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: password
+        volumeMounts:
+          - mountPath: /config 
+            name: configmap-volume
+        resources:  
+          limits:
+            cpu: "2" 
+            memory: "512Mi" 
+          requests:
+            cpu: "1"
+            memory: "256Mi" 
+      volumes:
+        - name: configmap-volume
+          configMap:
+            name: data-config
+---
+apiVersion: v1 
+kind: ConfigMap
+metadata:
+  name: data-config
+data:
+  data-config.properties: |
+    name: VTI-Devops
+    class: 2302
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+type: Opaque
+data:
+  password: AnyThingIsOk
