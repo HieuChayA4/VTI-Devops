@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: hieuchaya4/helloworld:v1
+        image: nginx
         env:
           - name: configmap_path
             value: "/config/data-config.properties"
