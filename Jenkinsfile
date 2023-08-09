@@ -1,6 +1,6 @@
 pipeline {
-    agent any
-    stages {
+  agent any
+  stages {
         stage('Change directory') {
             steps {
                 dir('Homework 4') {
