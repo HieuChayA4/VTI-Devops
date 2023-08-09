@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-    DOCKERHUB_CREDENTIALS = credential('docker hub access token')
-  }
   stages {
         stage('Change directory') {
             steps {
