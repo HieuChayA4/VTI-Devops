@@ -1,19 +1,20 @@
 pipeline {
   agent any
+  environment {
+    DOCKERHUB_CREDENTIALS = credential('docker hub access token')
+  }
   stages {
-        stage('Build') {
+        stage('Change directory') {
             steps {
-                echo 'Hello World'
+                sh 'cd ./Homework 4'
             }
         }
-        stage('Test') {
+        stage('Build and push image') {
             steps {
-                echo 'Test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploy'
+                withDockerRegistry(credentialsId: 'docker hub access token', url: 'https://index.docker.io/v1/)') {
+                    sh 'docker build -t hieuchaya4/helloworld:latest .'
+                    sh 'docker push hieuchaya4/helloworld:latest'
+                }   
             }
         }
     }
