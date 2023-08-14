@@ -16,7 +16,7 @@ pipeline {
             steps {
                 dir('Homework 4') {
                     script {
-                    sh 'docker build -f /Dockerfile -t hieuchaya4/helloworld:latest .'
+                    sh 'docker build -f ./Dockerfile -t hieuchaya4/helloworld:latest .'
                 }
                 withDockerRegistry(credentialsId: 'docker hub access token', url: 'https://index.docker.io/v1/') {
                   //  sh 'cd "Homework 4"'
