@@ -15,7 +15,7 @@ pipeline {
                 }
             }
         }
-    }
+
         stage('Push image') {
             steps {
                 withDockerRegistry(credentialsId: 'docker hub access token', url: 'https://index.docker.io/v1/') {
