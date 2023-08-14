@@ -6,6 +6,7 @@ pipeline {
                 dir('Homework 4') {
                     script {
                         sh 'pwd' // Just to print the current directory for verification
+                        sh 'ls -al'
                     }
                 }
             }
