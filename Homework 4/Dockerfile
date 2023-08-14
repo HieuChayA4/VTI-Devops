@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app
 
 # Create user and set ownership and permissions as required
-RUN adduser -D myuser && chown -R myuser /app
+RUN adduser --no-create-home myuser && chown -R myuser /app
 USER myuser
 
 # Expose port 8000
