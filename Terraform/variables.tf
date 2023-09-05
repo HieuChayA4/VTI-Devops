@@ -73,6 +73,7 @@ variable "sg" {
   default = {
     "sg1" = {
       name = "vti-qhieu-tf-sg1"
+
       ingress = [{
         description      = "Allow SSH"
         from_port        = 22
@@ -112,6 +113,7 @@ variable "sg" {
         security_groups  = []
         self             = true
       }]
+
     }
   }
   type = any
