@@ -13,31 +13,3 @@ resource "aws_key_pair" "key_pair" {
   key_name   = var.key_pair
   public_key = var.public_key
 }
-
-module "vpc" {
-  source             = "./vpc"
-  vpc_cidr_block     = var.vpc_cidr_block
-  enable_dns_support = var.enable_dns_support
-}
-
-module "subnet" {
-  depends_on = [
-    module.vpc
-  ]
-  source         = "./network"
-  vpc_id         = module.vpc.vpc_id
-  for_each       = var.subnet
-  public_subnets = each.value.cidr
-  subnet_name    = each.value.name
-}
-
-module "sg" {
-  depends_on = [
-    module.vpc
-  ]
-  source     = "./network"
-  vpc_id     = module.vpc.vpc_id
-  for_each   = var.sg
-  sg_name    = each.value.name
-  sg_ingress = each.value.ingress
-}
