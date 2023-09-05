@@ -1,6 +1,6 @@
 provider "aws" {
   version                  = "~> 5.0"
-  region                   = var.region
+  region                   = "ap-southeast-1"
   shared_credentials_files = ["C:/Users/Hieu/.aws/credentials"]
   skip_region_validation   = true
 }
